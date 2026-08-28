@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Knoten — Malharia retilínea de alto padrão</title>
+  <meta name="description" content="Intermediação racional entre marcas premium de pequena tiragem e fornecedores auditados de malharia retilínea no Brasil. Contratos claros, SLA e acompanhamento contínuo.">
+  <link rel="canonical" href="https://knoten.biz/">
+
+  <meta property="og:site_name" content="knoten.biz">
+  <meta property="og:title" content="Knoten — Malharia retilínea de alto padrão">
+  <meta property="og:description" content="Conectamos marcas de pequena tiragem com fornecedores auditados de malharia retilínea. Contratos claros, acompanhamento real.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://knoten.biz/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="https://knoten.biz/assets/img/og-knoten.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Malharia retilínea para quem leva a sério — knoten.biz">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Knoten — Malharia retilínea de alto padrão">
+  <meta name="twitter:description" content="Intermediação racional entre marcas premium e fornecedores auditados de malharia retilínea no Brasil.">
+  <meta name="twitter:image" content="https://knoten.biz/assets/img/og-knoten.jpg">
+
+  <meta name="theme-color" content="#1c1917">
+  <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/img/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap">
+
+  <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+        href="assets/img/hero-fjord-1600.avif"
+        imagesrcset="assets/img/hero-fjord-768.avif 768w, assets/img/hero-fjord-1200.avif 1200w, assets/img/hero-fjord-1600.avif 1600w, assets/img/hero-fjord-2000.avif 2000w"
+        imagesizes="100vw">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+
+    /* ═══════════════════════════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════════════════════════ */
+    :root {
+      /* superfícies */
+      --ivory:       #faf8f5;
+      --cream:       #f2ede6;
+      --sand:        #e8e0d5;
+      --warm-white:  #ffffff;
+      --charcoal:    #1c1917;
+
+      /* tinta sobre claro — alfas verificados em WCAG AA sobre #faf8f5 */
+      --ink:         #1c1917;                 /* 15.9:1 */
+      --ink-80:      rgba(28,25,23,0.80);     /*  8.9:1 — corpo principal      */
+      --ink-64:      rgba(28,25,23,0.64);     /*  5.1:1 — corpo secundário     */
+      --ink-62:      rgba(28,25,23,0.62);     /*  4.8:1 — micro-labels         */
+      --ink-50:      rgba(28,25,23,0.50);     /*  3.3:1 — só texto ≥24px       */
+      --ink-18:      rgba(28,25,23,0.18);     /*  réguas                       */
+      --ink-11:      rgba(28,25,23,0.11);     /*  divisórias                   */
+      --ink-05:      rgba(28,25,23,0.05);     /*  fundos sutis                 */
+
+      /* tinta sobre escuro */
+      --on-dark:     #ffffff;                 /* 15.9:1 */
+      --on-dark-72:  rgba(255,255,255,0.72);  /*  9.5:1 — corpo                */
+      --on-dark-56:  rgba(255,255,255,0.56);  /*  6.2:1 — labels               */
+      --on-dark-44:  rgba(255,255,255,0.44);  /*  4.5:1 — mínimo para texto    */
+      --on-dark-16:  rgba(255,255,255,0.16);
+      --on-dark-08:  rgba(255,255,255,0.08);
+
+      /* tipografia */
+      --font-serif: 'Cormorant Garamond', 'Garamond', 'Georgia', serif;
+      --font-sans:  'DM Sans', 'Helvetica Neue', 'Helvetica', system-ui, sans-serif;
+
+      --fs-display:   clamp(46px, 2rem + 6.4vw, 112px);
+      --fs-headline:  clamp(38px, 1.9rem + 4.4vw, 68px);
+      --fs-title:     clamp(31px, 1.5rem + 2.6vw, 52px);
+      --fs-statement: clamp(26px, 1.4rem + 2.1vw, 42px);
+      --fs-sub:       clamp(22px, 1.2rem + 1.2vw, 34px);
+      --fs-item:      clamp(20px, 1.1rem + 0.6vw, 25px);
+      --fs-lead:      clamp(15px, 0.9rem + 0.2vw, 17px);
+      --fs-body:      clamp(15px, 0.9rem + 0.12vw, 16px);
+      --fs-micro:     11px;
+      --fs-nano:      10px;
+
+      --lh-body: 1.82;
+      --measure: 62ch;
+
+      /* ritmo */
+      /* Um único eixo governa toda a página. `--edge` reproduz a margem
+         externa do contêiner de 1200px, de modo que uma seção sangrada e
+         uma seção contida alinhem o texto exatamente na mesma linha.
+         `--panel-in` é a margem interna, junto à divisa com a fotografia. */
+      --shell:     1200px;
+      --gutter:    clamp(24px, 4.6vw, 56px);
+      --edge:      max(var(--gutter), calc((100vw - var(--shell)) / 2 + var(--gutter)));
+      --panel-in:  clamp(24px, 4.2vw, 60px);
+      --section-y: clamp(80px, 8.4vw, 124px);
+      --breather:    72svh;   /* respiro de seção   */
+      --breather-lg: 84svh;   /* respiro do manifesto, que carrega mais texto */
+      --panel-y:   clamp(64px, 7.6vw, 112px);
+
+      /* movimento */
+      --ease:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --header-h: 92px;
+
+      /* Marca embutida: máscara CSS sofre CORS e falha sob file://.
+         Em data URI, funciona em qualquer contexto. */
+      --logo-mask: url("data:image/png;base64,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");
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       RESET / BASE
+    ═══════════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scrollbar-gutter: stable;
+    }
+    body {
+      font-family: var(--font-sans); font-optical-sizing: auto;
+      background: var(--ivory); color: var(--ink);
+      line-height: 1.6; overflow-x: hidden;
+      accent-color: var(--charcoal);
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img, svg { display: block; }
+    img { max-width: 100%; }
+    p { text-wrap: pretty; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+    ::selection { background: var(--charcoal); color: var(--ivory); }
+    section[id], [id].anchor { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+    /* foco visível — obrigatório para navegação por teclado */
+    :focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    .on-dark :focus-visible, .site-header:not(.scrolled) :focus-visible,
+    .cta-panel :focus-visible, footer :focus-visible, .audience-col.dark :focus-visible,
+    .mobile-nav :focus-visible {
+      outline-color: var(--warm-white);
+    }
+
+    .skip-link {
+      position: fixed; top: 12px; left: 12px; z-index: 300;
+      transform: translateY(-160%);
+      background: var(--charcoal); color: var(--ivory);
+      padding: 12px 20px; border-radius: 40px;
+      font-size: var(--fs-micro); letter-spacing: 1.6px; text-transform: uppercase;
+      transition: transform 0.25s var(--ease-out);
+    }
+    .skip-link:focus-visible { transform: none; }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip-path: inset(50%); white-space: nowrap;
+    }
+
+    /* grão fotográfico — textura editorial, quase imperceptível */
+    body::after {
+      content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none;
+      opacity: 0.03; background-size: 200px 200px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       LAYOUT
+    ═══════════════════════════════════════════════════════════════ */
+    .wrap { width: 100%; padding-inline: var(--edge); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       HEADER
+       Estado hero: sem barra, mas com scrim próprio — o texto nunca
+       depende do que a fotografia estiver mostrando atrás.
+    ═══════════════════════════════════════════════════════════════ */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 26px 0;
+      background: transparent;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease),
+                  box-shadow 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+    }
+    .site-header::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 200px; z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(to bottom,
+        rgba(12,10,8,0.88) 0%,
+        rgba(12,10,8,0.70) 30%,
+        rgba(12,10,8,0.40) 58%,
+        rgba(12,10,8,0.14) 80%,
+        transparent 100%);
+      opacity: 1; transition: opacity 0.4s var(--ease);
+    }
+    .site-header.scrolled {
+      background: rgba(250,248,245,0.86);
+      backdrop-filter: blur(40px) saturate(190%) brightness(1.05);
+      -webkit-backdrop-filter: blur(40px) saturate(190%) brightness(1.05);
+      box-shadow: 0 1px 0 var(--ink-11), 0 6px 28px rgba(28,25,23,0.06);
+      padding: 14px 0;
+    }
+    /* Sem backdrop-filter (ou com ele desligado), a barra fica sólida:
+       o desfoque é o que torna o fundo ilegível, e sem ele a translucidez
+       voltaria a misturar o texto. */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .site-header.scrolled { background: var(--ivory); }
+    }
+    .site-header.scrolled::before { opacity: 0; }
+
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+
+    /* logo por máscara: uma única imagem de 7 KB, tingida por currentColor */
+    .logo-wrap { display: flex; align-items: center; color: var(--warm-white); transition: color 0.4s var(--ease); }
+    .site-header.scrolled .logo-wrap { color: var(--charcoal); }
+    .logo-mark {
+      width: 148px; aspect-ratio: 640 / 103;
+      background-color: currentColor;
+      -webkit-mask-image: var(--logo-mask);   mask-image: var(--logo-mask);
+      -webkit-mask-size: contain;             mask-size: contain;
+      -webkit-mask-position: center;          mask-position: center;
+      -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+      transition: width 0.4s var(--ease);
+    }
+    /* Se o navegador não suportar máscara, a marca vira o wordmark em texto
+       — nunca um espaço vazio. */
+    @supports not ((-webkit-mask-image: url(a)) or (mask-image: url(a))) {
+      .logo-mark, .footer-logo {
+        width: auto; aspect-ratio: auto; background: none;
+        font-family: var(--font-sans); font-size: 20px; font-weight: 500;
+        letter-spacing: -0.4px; color: currentColor;
+      }
+      .logo-mark::after, .footer-logo::after { content: 'knoten.biz'; }
+    }
+    .site-header.scrolled .logo-mark { width: 134px; }
+
+    /* Sete itens: o intervalo cede antes de a linha quebrar. Abaixo de
+       1080px o menu inteiro vira o popover lateral. */
+    .nav-links { display: flex; align-items: center; gap: clamp(17px, 1.85vw, 30px); }
+    .nav-link {
+      font-size: var(--fs-micro); font-weight: 400; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--on-dark-72); white-space: nowrap;
+      position: relative; padding: 4px 0; transition: color 0.25s var(--ease);
+    }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 0;
+      background: currentColor; transition: width 0.35s var(--ease-out);
+    }
+    .nav-link:hover, .nav-link:focus-visible { color: var(--warm-white); }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link.is-current { color: var(--warm-white); }
+    .nav-link.is-current::after { width: 100%; }
+    .site-header.scrolled .nav-link { color: var(--ink-64); }
+    .site-header.scrolled .nav-link.is-current { color: var(--charcoal); }
+    .site-header.scrolled .nav-link:hover, .site-header.scrolled .nav-link:focus-visible { color: var(--charcoal); }
+
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .nav-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 40px; padding: 0 18px; border-radius: 40px;
+      border: 1px solid transparent; cursor: pointer; background: none;
+      font-family: inherit; font-size: var(--fs-micro); font-weight: 400;
+      letter-spacing: 1.5px; text-transform: uppercase; white-space: nowrap;
+      color: var(--on-dark-72); transition: all 0.25s var(--ease);
+    }
+    .nav-btn.is-icon { width: 40px; padding: 0; }
+    .nav-btn svg { width: 15px; height: 15px; fill: currentColor; }
+    .nav-cta { border-color: rgba(255,255,255,0.42); color: var(--warm-white); }
+    .nav-btn:hover { color: var(--warm-white); border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.10); }
+    .site-header.scrolled .nav-btn { color: var(--ink-64); }
+    .site-header.scrolled .nav-cta { border-color: var(--ink-18); color: var(--charcoal); }
+    .site-header.scrolled .nav-btn:hover { color: var(--charcoal); border-color: var(--ink-18); background: var(--ink-05); }
+
+    .nav-toggle { display: none; }
+    .nav-toggle-bars { display: block; width: 17px; height: 9px; position: relative; }
+    .nav-toggle-bars i { position: absolute; left: 0; right: 0; height: 1.5px; background: currentColor; transition: transform 0.3s var(--ease-out); }
+    .nav-toggle-bars i:first-child { top: 0; }
+    .nav-toggle-bars i:last-child  { bottom: 0; }
+
+    @media (max-width: 1080px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: inline-flex; }
+      .nav-cta { display: none; }
+    }
+    @media (max-width: 520px) {
+      .nav-btn.is-icon:not(.nav-toggle) { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       MENU MÓVEL — popover em top-layer (light-dismiss e Esc nativos)
+    ═══════════════════════════════════════════════════════════════ */
+    .mobile-nav {
+      position: fixed; inset: 0 0 auto auto; width: min(88vw, 380px); height: 100dvh;
+      margin: 0; border: 0; padding: calc(var(--header-h) + 12px) 32px clamp(20px, 3.4svh, 40px);
+      background: var(--charcoal); color: var(--on-dark);
+      display: flex; flex-direction: column; gap: 4px;
+      overflow-y: auto;
+    }
+    .mobile-nav:not(:popover-open):not(.is-open) { display: none; }
+    .mobile-nav.is-open { display: flex; z-index: 200; }
+    .mobile-nav::backdrop { background: rgba(14,12,10,0.55); backdrop-filter: blur(3px); }
+
+    /* Sete itens: corpo e respiro seguem a altura da tela para que a lista e
+       as ações caibam sem rolagem interna também num aparelho de 667px. */
+    .mobile-nav a.m-link {
+      font-family: var(--font-serif); font-size: clamp(22px, 3.4svh, 30px); font-weight: 300;
+      color: var(--on-dark-72); padding: clamp(7px, 1.5svh, 14px) 0;
+      border-bottom: 1px solid var(--on-dark-08);
+      transition: color 0.25s var(--ease), padding-left 0.35s var(--ease-out);
+    }
+    .mobile-nav a.m-link:hover, .mobile-nav a.m-link:focus-visible { color: var(--on-dark); padding-left: 8px; }
+    .mobile-nav a.m-link.is-current { color: var(--on-dark); }
+    .mobile-nav .m-actions { margin-top: auto; padding-top: clamp(20px, 4svh, 36px); display: flex; flex-direction: column; gap: clamp(10px, 1.7svh, 14px); align-items: flex-start; }
+    .mobile-nav .m-social { display: flex; gap: 10px; }
+    .mobile-nav .m-social a {
+      width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--on-dark-16);
+      display: inline-flex; align-items: center; justify-content: center; color: var(--on-dark-56);
+      transition: all 0.25s var(--ease);
+    }
+    .mobile-nav .m-social a:hover { color: var(--on-dark); border-color: var(--on-dark-44); }
+    .mobile-nav .m-social svg { width: 16px; height: 16px; fill: currentColor; }
+    .m-close {
+      position: absolute; top: 22px; right: 24px; width: 40px; height: 40px;
+      border: 1px solid var(--on-dark-16); border-radius: 50%; background: none;
+      color: var(--on-dark-56); cursor: pointer; display: inline-flex;
+      align-items: center; justify-content: center; transition: all 0.25s var(--ease);
+    }
+    .m-close:hover { color: var(--on-dark); border-color: var(--on-dark-44); }
+    .m-close svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+    @starting-style { .mobile-nav:popover-open { translate: 100% 0; } }
+    .mobile-nav { translate: 0 0; transition: translate 0.42s var(--ease-out), display 0.42s allow-discrete, overlay 0.42s allow-discrete; }
+    .mobile-nav:not(:popover-open) { translate: 100% 0; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════════════ */
+    .hero { position: relative; height: 100svh; min-height: 620px; overflow: hidden; display: flex; align-items: flex-end; }
+    .hero-media { position: absolute; inset: -8% 0; height: 116%; overflow: hidden; will-change: transform; }
+    .hero-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 32%;
+      animation: heroReveal 1.9s var(--ease-out) both;
+    }
+    @keyframes heroReveal { from { transform: scale(1.10); } to { transform: scale(1); } }
+    .hero-gradient {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to top,
+        rgba(20,17,15,0.90) 0%, rgba(20,17,15,0.62) 26%, rgba(20,17,15,0.34) 48%,
+        rgba(20,17,15,0.10) 74%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 2; padding-bottom: clamp(56px, 8vh, 92px); width: 100%; }
+    .hero-eyebrow {
+      font-size: var(--fs-micro); letter-spacing: 3.4px; text-transform: uppercase;
+      color: var(--warm-white); margin-bottom: 24px; display: flex; align-items: center; gap: 14px;
+      text-shadow: 0 1px 16px rgba(12,10,8,0.75);
+    }
+    .hero-eyebrow::before { content: ''; width: 34px; height: 1px; background: var(--on-dark-56); flex: none; }
+    .hero h1 {
+      font-family: var(--font-serif); font-size: var(--fs-display); font-weight: 300;
+      line-height: 1.0; letter-spacing: -0.018em; color: var(--warm-white);
+      margin-bottom: 30px; max-width: 15ch; text-shadow: 0 2px 40px rgba(12,10,8,0.42);
+    }
+    .hero h1 em { font-style: italic; font-weight: 300; }
+    .hero-sub {
+      font-size: var(--fs-lead); font-weight: 300; color: rgba(255,255,255,0.86);
+      line-height: 1.78; max-width: 46ch; margin-bottom: 40px;
+      text-shadow: 0 1px 18px rgba(12,10,8,0.6);
+    }
+    .hero-actions { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
+    .hero-scroll-hint {
+      position: absolute; bottom: 34px; right: var(--edge); z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 10px; opacity: 0.55;
+    }
+    .scroll-line { width: 1px; height: 50px; background: var(--warm-white); transform-origin: top; animation: scrollPulse 2.8s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { transform: scaleY(1); opacity: 1; } 55% { transform: scaleY(0.35); opacity: 0.25; } }
+    .scroll-label {
+      font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--warm-white);
+      writing-mode: vertical-rl; transform: rotate(180deg);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       BOTÕES
+    ═══════════════════════════════════════════════════════════════ */
+    .btn-ghost-light {
+      padding: 14px 36px; border: 1px solid rgba(255,255,255,0.5); color: var(--warm-white);
+      font-size: var(--fs-micro); letter-spacing: 2px; text-transform: uppercase;
+      border-radius: 40px; display: inline-block; transition: all 0.3s var(--ease);
+    }
+    .btn-ghost-light:hover { background: var(--warm-white); color: var(--charcoal); border-color: var(--warm-white); }
+    .btn-text-light {
+      font-size: var(--fs-micro); letter-spacing: 2px; text-transform: uppercase;
+      color: var(--on-dark-72); display: inline-flex; align-items: center; gap: 10px;
+      transition: color 0.2s, gap 0.3s var(--ease);
+    }
+    .btn-text-light:hover { color: var(--warm-white); gap: 16px; }
+    .btn-text-light svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+    .btn-primary-light {
+      padding: 16px 42px; background: var(--warm-white); color: var(--charcoal);
+      font-size: var(--fs-micro); font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+      border-radius: 40px; display: inline-block; white-space: nowrap;
+      transition: transform 0.3s var(--ease-out), background 0.25s var(--ease);
+    }
+    .btn-primary-light:hover { background: var(--cream); transform: translateY(-2px); }
+    .btn-outline-dark {
+      padding: 14px 32px; border: 1px solid var(--ink-18); color: var(--charcoal);
+      font-size: var(--fs-micro); letter-spacing: 2px; text-transform: uppercase;
+      border-radius: 40px; display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.28s var(--ease);
+    }
+    .btn-outline-dark:hover { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); gap: 16px; }
+    .btn-outline-light {
+      padding: 14px 32px; border: 1px solid var(--on-dark-16); color: var(--on-dark);
+      font-size: var(--fs-micro); letter-spacing: 2px; text-transform: uppercase;
+      border-radius: 40px; display: inline-flex; align-items: center; gap: 10px;
+      transition: all 0.28s var(--ease);
+    }
+    .btn-outline-light:hover { background: var(--warm-white); color: var(--charcoal); border-color: var(--warm-white); gap: 16px; }
+    .btn-outline-dark svg, .btn-outline-light svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       ELEMENTOS COMPARTILHADOS
+    ═══════════════════════════════════════════════════════════════ */
+    .eyebrow {
+      font-size: var(--fs-nano); letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-62); margin-bottom: 20px; display: flex; align-items: center; gap: 14px;
+    }
+    .eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--ink-18); flex: none; }
+    .eyebrow.light { color: var(--on-dark-56); }
+    .eyebrow.light::before { background: var(--on-dark-44); }
+    .section-title {
+      font-family: var(--font-serif); font-size: var(--fs-title); font-weight: 300;
+      letter-spacing: -0.012em; color: var(--charcoal); line-height: 1.08;
+    }
+
+    /* ── Leitura: as duas páginas internas anunciadas na home ── */
+    .leitura { background: var(--cream); padding: var(--section-y) 0; }
+    .leitura-grid {
+      margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--ink-11); border-block: 1px solid var(--ink-11);
+    }
+    .leitura-card {
+      display: block; background: var(--cream); padding: clamp(28px, 3.4vw, 46px);
+      transition: background 0.35s var(--ease);
+    }
+    .leitura-card:hover { background: var(--ivory); }
+    .leitura-card .k-num {
+      font-size: var(--fs-nano); letter-spacing: 2.6px; text-transform: uppercase;
+      color: var(--ink-62);
+    }
+    .leitura-card h3 {
+      margin-top: 16px; font-family: var(--font-serif); font-weight: 300;
+      font-size: var(--fs-sub); line-height: 1.12; color: var(--charcoal);
+    }
+    .leitura-card p {
+      margin-top: 14px; max-width: 44ch; font-size: var(--fs-body);
+      line-height: var(--lh-body); color: var(--ink-64); font-weight: 300;
+    }
+    .leitura-card .k-ir {
+      display: inline-block; margin-top: 22px; font-size: var(--fs-nano);
+      letter-spacing: 2px; text-transform: uppercase; color: var(--ink-62);
+      transition: color 0.3s var(--ease);
+    }
+    .leitura-card .k-ir::after { content: ' →'; }
+    .leitura-card:hover .k-ir { color: var(--charcoal); }
+
+    figure { position: relative; }
+    figcaption {
+      position: absolute; left: var(--panel-in); bottom: 22px; z-index: 2;
+      font-size: var(--fs-nano); letter-spacing: 2.4px; text-transform: uppercase;
+      color: rgba(255,255,255,0.92); text-shadow: 0 1px 12px rgba(0,0,0,0.5);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FEATURE SPLIT
+    ═══════════════════════════════════════════════════════════════ */
+    /* fotografia encostada na borda esquerda: legenda no eixo da página */
+    .ssplit:not(.reverse) .ssplit-media figcaption,
+    .origin-media figcaption,
+    .cta-media figcaption { left: var(--edge); }
+
+    .fsplit { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; border-bottom: 1px solid var(--ink-11); }
+    .fsplit.reverse .fsplit-media { order: 2; }
+    .fsplit-media { overflow: hidden; min-height: 620px; }
+    .fsplit-media img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transition: transform 1.3s var(--ease-out);
+    }
+    .fsplit:hover .fsplit-media img { transform: scale(1.04); }
+    /* Véu de legenda. As fotos claras (alfaiataria creme, fiação) deixavam o
+       micro-label de 10px em 2,2–3,0:1; a rampa curta no rodapé recupera AA
+       sem escurecer a imagem acima de 38% da altura. */
+    .fsplit-media::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(0deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.34) 14%, transparent 38%);
+    }
+    .fsplit-body {
+      padding: var(--panel-y) var(--edge) var(--panel-y) var(--panel-in);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .fsplit.reverse .fsplit-body { padding-left: var(--edge); padding-right: var(--panel-in); }
+    .statement-text {
+      font-family: var(--font-serif); font-size: var(--fs-statement); font-weight: 300;
+      line-height: 1.3; letter-spacing: -0.012em; color: var(--charcoal); max-width: 20ch;
+    }
+    .statement-text em { font-style: italic; color: var(--ink-50); }
+    .fsplit-lead {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-64); margin-top: 26px; max-width: 46ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       STICKY SPLIT
+    ═══════════════════════════════════════════════════════════════ */
+    .ssplit { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ink-11); }
+    .ssplit.reverse .ssplit-media { order: 2; }
+    .ssplit-media { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+    .ssplit-media img { width: 100%; height: 100%; object-fit: cover; }
+    .ssplit-media::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(0deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.34) 14%, transparent 38%);
+    }
+    .ssplit-body { padding: var(--panel-y) var(--edge) var(--panel-y) var(--panel-in); }
+    .ssplit.reverse .ssplit-body { padding-left: var(--edge); padding-right: var(--panel-in); }
+    .ssplit-body .eyebrow { margin-bottom: 16px; }
+    .ssplit-lead {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-64); max-width: 44ch; margin: 18px 0 34px;
+    }
+
+    /* O painel precisa terminar junto com a fotografia grudada ao lado;
+       passar disso é rolagem em falso, com a imagem parada na tela. */
+    .process-step {
+      padding: 28px 0 28px 0; border-top: 1px solid var(--ink-11);
+      display: grid; grid-template-columns: auto 1fr; gap: 30px; align-items: start;
+      position: relative;
+    }
+    .process-step::before {
+      content: ''; position: absolute; top: -1px; left: 0; height: 1px; width: 0;
+      background: var(--charcoal); transition: width 0.6s var(--ease-out);
+    }
+    .process-step:hover::before { width: 100%; }
+    .process-step:last-child { border-bottom: 1px solid var(--ink-11); }
+    .step-num {
+      font-family: var(--font-serif); font-size: 48px; font-weight: 300;
+      color: var(--ink-50); line-height: 0.9; letter-spacing: -0.04em;
+      font-variant-numeric: lining-nums; transition: color 0.5s var(--ease);
+    }
+    .process-step:hover .step-num { color: var(--charcoal); }
+    .step-heading {
+      font-family: var(--font-serif); font-size: var(--fs-item); font-weight: 400;
+      letter-spacing: -0.006em; color: var(--charcoal); line-height: 1.22; margin-bottom: 10px;
+    }
+    .step-body, .principle p {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-64); max-width: var(--measure);
+    }
+
+    .principle { padding: 32px 0; border-top: 1px solid var(--ink-11); }
+    .principle:last-of-type { border-bottom: 1px solid var(--ink-11); }
+    .principle-num {
+      font-family: var(--font-serif); font-size: 13px; color: var(--ink-62);
+      letter-spacing: 1.4px; margin-bottom: 12px;
+    }
+    .principle h3 {
+      font-family: var(--font-serif); font-size: var(--fs-item); font-weight: 400;
+      color: var(--charcoal); letter-spacing: -0.005em; margin-bottom: 10px; line-height: 1.22;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       AUDIENCE
+    ═══════════════════════════════════════════════════════════════ */
+    .audience { border-bottom: 0; }
+    .audience-hero { position: relative; height: var(--breather); min-height: 460px; overflow: hidden; display: flex; align-items: flex-end; }
+    .audience-hero-media { position: absolute; inset: -10% 0; height: 120%; will-change: transform; }
+    .audience-hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .audience-hero-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      /* A foto das Dolomitas tem céu e rocha claros exatamente na faixa em
+         que a legenda cai; sem esta rampa o micro-label de 10px fica abaixo
+         de 4,5:1. Medido sobre a região mais clara do enquadramento. */
+      background: linear-gradient(to top, rgba(20,17,15,0.92) 0%, rgba(20,17,15,0.62) 40%, rgba(20,17,15,0.32) 66%, rgba(20,17,15,0.08) 88%, transparent 100%);
+    }
+    .audience-hero-content { position: relative; z-index: 2; width: 100%; padding-bottom: 48px; }
+    .audience-hero-content .section-title { color: var(--warm-white); text-shadow: 0 2px 30px rgba(12,10,8,0.5); }
+    .audience-hero-lead {
+      font-size: var(--fs-lead); font-weight: 300; line-height: 1.78; max-width: 44ch;
+      color: rgba(255,255,255,0.94); margin-top: 20px; text-shadow: 0 1px 18px rgba(12,10,8,0.65);
+    }
+    .audience-hero-content .eyebrow { color: rgba(255,255,255,0.92); text-shadow: 0 1px 16px rgba(12,10,8,0.7); }
+
+    .audience-cols { display: grid; grid-template-columns: 1fr 1fr; }
+    .audience-col {
+      padding: var(--panel-y) var(--panel-in) var(--panel-y) var(--edge);
+      display: flex; flex-direction: column;
+    }
+    .audience-col.dark {
+      background: var(--charcoal);
+      padding: var(--panel-y) var(--edge) var(--panel-y) var(--panel-in);
+    }
+    .col-tag {
+      font-size: var(--fs-nano); letter-spacing: 3px; text-transform: uppercase;
+      color: var(--ink-62); margin-bottom: 18px;
+    }
+    .audience-col.dark .col-tag { color: var(--on-dark-56); }
+    .col-heading {
+      font-family: var(--font-serif); font-size: var(--fs-sub); font-weight: 300;
+      letter-spacing: -0.008em; color: var(--charcoal); line-height: 1.2; margin-bottom: 36px; max-width: 18ch;
+    }
+    .audience-col.dark .col-heading { color: var(--warm-white); }
+    .audience-block { margin-bottom: 30px; }
+    .block-title {
+      font-size: var(--fs-nano); font-weight: 500; letter-spacing: 2.4px;
+      text-transform: uppercase; color: var(--ink-62); margin-bottom: 14px;
+    }
+    .audience-col.dark .block-title { color: var(--on-dark-56); }
+    .block-text {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body); color: var(--ink-80);
+    }
+    .audience-col.dark .block-text { color: var(--on-dark-72); }
+    .block-quote { border-left: 1.5px solid var(--ink-18); padding-left: 20px; }
+    .audience-col.dark .block-quote { border-left-color: var(--on-dark-16); }
+    .highlight-box { background: var(--cream); padding: 22px 26px; margin-top: 14px; }
+    .audience-col.dark .highlight-box { background: rgba(255,255,255,0.06); }
+    .highlight-box p { font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body); color: var(--ink-80); }
+    .audience-col.dark .highlight-box p { color: var(--on-dark-72); }
+    .col-cta { margin-top: auto; padding-top: 34px; }
+
+    /* As duas colunas comparam ponto a ponto: sem trilhos compartilhados, o
+       título de três linhas da direita empurra tudo para baixo e "O que você
+       recebe" de um lado deixa de ficar na altura do outro. O subgrid amarra
+       as seis faixas — etiqueta, título, três blocos e botão — nas mesmas
+       linhas nas duas colunas. Sem suporte, cai no comportamento em coluna. */
+    @supports (grid-template-rows: subgrid) {
+      @media (min-width: 769px) {
+        .audience-cols { grid-template-rows: auto auto auto auto auto 1fr; }
+        .audience-col, .audience-col.dark {
+          display: grid; grid-row: 1 / -1; grid-template-rows: subgrid;
+        }
+        .col-cta { margin-top: 0; padding-top: 34px; align-self: end; }
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       ACORDO — a seção dos termos. Aqui a página troca de registro: a
+       fotografia deixa de sangrar e vira prancha dentro do contêiner, o
+       texto vira ficha. A quebra de ritmo é o sinal de que saímos da
+       persuasão e entramos no que dá para conferir.
+    ═══════════════════════════════════════════════════════════════ */
+    .acordo { background: var(--cream); padding: var(--section-y) 0; border-bottom: 1px solid var(--ink-11); }
+    .acordo-head {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(24px, 4vw, 72px); align-items: end; margin-bottom: clamp(40px, 4.4vw, 64px);
+    }
+    .acordo-head .eyebrow { margin-bottom: 16px; }
+    .acordo-lead {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-64); max-width: 48ch;
+    }
+    /* A prancha sangra de borda a borda — é a única fotografia do site
+       mostrada em proporção inteira, e a composição dos três só se lê assim.
+       O teto em svh evita que ela ultrapasse a tela em monitor largo. */
+    .acordo-plate { margin-bottom: clamp(40px, 4.4vw, 64px); }
+    .acordo-plate picture { display: block; }
+    .acordo-plate img {
+      display: block; width: 100%; height: auto;
+      aspect-ratio: 1672 / 941; max-height: 88svh; object-fit: cover; object-position: center 34%;
+    }
+    .acordo-plate figcaption {
+      position: static; margin-top: 14px; padding-inline: var(--edge);
+      color: var(--ink-62); text-shadow: none;
+    }
+    .terms {
+      display: grid; grid-template-columns: 1fr 1fr;
+      column-gap: clamp(32px, 4.6vw, 88px);
+      border-bottom: 1px solid var(--ink-18);
+    }
+    .term { padding: 26px 0; border-top: 1px solid var(--ink-18); }
+    /* Remuneração fecha a ficha ocupando a largura inteira: é o termo que
+       o leitor procura primeiro e o único que não cabe em meia-coluna. */
+    .term:last-child { grid-column: 1 / -1; }
+    .term:last-child dd { max-width: 78ch; }
+    .term dt {
+      font-size: var(--fs-nano); font-weight: 500; letter-spacing: 2.4px;
+      text-transform: uppercase; color: var(--ink-62); margin-bottom: 12px;
+    }
+    .term dd {
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-80); max-width: 48ch;
+    }
+    .acordo-note {
+      margin-top: 34px; border-left: 1.5px solid var(--ink-18); padding-left: 20px;
+      font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body);
+      color: var(--ink-64); max-width: 62ch;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       EDITORIAL FULL-BLEED
+    ═══════════════════════════════════════════════════════════════ */
+    .editorial-spread { position: relative; height: var(--breather); min-height: 460px; overflow: hidden; border-bottom: 1px solid var(--ink-11); }
+    .editorial-media { position: absolute; inset: -10% 0; height: 120%; will-change: transform; }
+    .editorial-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+    /* Fechamento de “Para quem é”: em tela larga o corte é vertical e o topo
+       mantém os dois rostos; em tela estreita o corte vira horizontal, e o
+       centro cairia no tronco — daí o deslocamento para 22%. */
+    .audience .editorial-media img { object-position: center 0%; }
+    @media (max-width: 900px) { .audience .editorial-media img { object-position: 22% center; } }
+    .editorial-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      /* diagonal para o clima, vertical para garantir o pé da legenda */
+      background:
+        linear-gradient(0deg, rgba(20,17,15,0.62) 0%, rgba(20,17,15,0.18) 26%, transparent 46%),
+        linear-gradient(115deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.32) 48%, rgba(20,17,15,0.04) 82%, transparent 100%);
+    }
+    .editorial-caption { position: absolute; bottom: 52px; left: var(--edge); z-index: 2; }
+    .editorial-caption-text {
+      font-family: var(--font-serif); font-size: var(--fs-statement); font-weight: 300;
+      font-style: italic; color: var(--warm-white); line-height: 1.24; max-width: 16ch; margin-bottom: 18px;
+      text-shadow: 0 2px 30px rgba(12,10,8,0.55);
+    }
+    .editorial-caption-sub {
+      font-size: var(--fs-nano); letter-spacing: 3px; text-transform: uppercase;
+      /* medido sobre a região mais clara do enquadramento: em --on-dark-72
+         o label de 10px ficava em 4,2:1, abaixo do mínimo AA */
+      color: rgba(255,255,255,0.90); text-shadow: 0 1px 16px rgba(12,10,8,0.75);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       ORIGEM
+    ═══════════════════════════════════════════════════════════════ */
+    .origin { border-bottom: 1px solid var(--ink-11); }
+    .origin-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .origin-media { order: -1; overflow: hidden; min-height: 640px; }
+    .origin-media img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;
+      transition: transform 1.3s var(--ease-out);
+    }
+    .origin:hover .origin-media img { transform: scale(1.035); }
+    .origin-media::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(0deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.34) 14%, transparent 38%);
+    }
+    .origin-body { padding: var(--panel-y) var(--edge) var(--panel-y) var(--panel-in); display: flex; flex-direction: column; justify-content: center; }
+    .origin-title { margin-bottom: clamp(32px, 3.6vw, 48px); max-width: 16ch; }
+    .origin-text p {
+      font-size: var(--fs-lead); font-weight: 300; line-height: 1.9;
+      color: var(--ink-80); margin-bottom: 20px; max-width: var(--measure);
+    }
+    .origin-text p:last-of-type { margin-bottom: 0; }
+    .origin-text strong { color: var(--charcoal); font-weight: 500; }
+    .origin-text a { border-bottom: 1px solid var(--ink-18); transition: border-color 0.2s; }
+    .origin-text a:hover { border-color: var(--charcoal); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       MANIFESTO
+    ═══════════════════════════════════════════════════════════════ */
+    .manifesto { position: relative; height: var(--breather-lg); min-height: 540px; overflow: hidden; display: flex; align-items: center; border-bottom: 1px solid var(--ink-11); }
+    .manifesto-media { position: absolute; inset: -10% 0; height: 120%; will-change: transform; }
+    .manifesto-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+    .manifesto-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(18,14,11,0.88) 0%, rgba(18,14,11,0.66) 38%, rgba(18,14,11,0.34) 62%, rgba(18,14,11,0.08) 86%, transparent 100%);
+    }
+    .manifesto-content { position: relative; z-index: 2; }
+    .manifesto-text {
+      font-family: var(--font-serif); font-size: var(--fs-headline); font-weight: 300;
+      line-height: 1.14; letter-spacing: -0.016em; color: var(--warm-white); max-width: 18ch;
+      text-shadow: 0 2px 34px rgba(12,10,8,0.5);
+    }
+    .manifesto-text em { font-style: italic; color: rgba(255,255,255,0.82); }
+    .manifesto-sub {
+      font-size: var(--fs-body); font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.84);
+      margin-top: 26px; max-width: 44ch; text-shadow: 0 1px 18px rgba(12,10,8,0.65);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       CTA
+    ═══════════════════════════════════════════════════════════════ */
+    .cta-split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+    .cta-media { overflow: hidden; min-height: 600px; }
+    .cta-media img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
+      transition: transform 1.3s var(--ease-out);
+    }
+    .cta-split:hover .cta-media img { transform: scale(1.04); }
+    .cta-media::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(0deg, rgba(20,17,15,0.72) 0%, rgba(20,17,15,0.34) 14%, transparent 38%);
+    }
+    .cta-panel {
+      background: var(--charcoal); padding: var(--panel-y) var(--edge) var(--panel-y) var(--panel-in);
+      display: flex; flex-direction: column; justify-content: center; gap: 40px;
+    }
+    .cta-headline {
+      font-family: var(--font-serif); font-size: var(--fs-headline); font-weight: 300;
+      letter-spacing: -0.022em; color: var(--warm-white); line-height: 1.02;
+    }
+    .cta-headline em { font-style: italic; color: var(--on-dark-56); }
+    .cta-sub { font-size: var(--fs-body); font-weight: 300; line-height: var(--lh-body); color: var(--on-dark-72); max-width: 42ch; margin-top: -18px; }
+    .cta-actions { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+    .cta-choice { display: flex; flex-wrap: wrap; gap: 12px; }
+    .cta-links { display: flex; gap: 20px; flex-wrap: wrap; padding-top: 6px; }
+    .cta-link {
+      font-size: var(--fs-micro); font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--on-dark-56); display: inline-flex; align-items: center; gap: 6px;
+      transition: color 0.2s, gap 0.3s var(--ease);
+    }
+    .cta-link:hover { color: var(--on-dark); gap: 10px; }
+    .cta-link svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════════════ */
+    footer { background: var(--charcoal); border-top: 1px solid var(--on-dark-08); padding: 30px 0; color: var(--on-dark-56); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .footer-logo {
+      width: 130px; aspect-ratio: 640 / 103; background-color: var(--on-dark-72);
+      -webkit-mask-image: var(--logo-mask);   mask-image: var(--logo-mask);
+      -webkit-mask-size: contain;             mask-size: contain;
+      -webkit-mask-position: center;          mask-position: center;
+      -webkit-mask-repeat: no-repeat;         mask-repeat: no-repeat;
+    }
+    .footer-meta { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .footer-founder {
+      font-size: var(--fs-nano); font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--on-dark-56); transition: color 0.2s;
+    }
+    .footer-founder:hover { color: var(--on-dark); }
+    .footer-copy { font-size: var(--fs-micro); font-weight: 300; color: var(--on-dark-56); letter-spacing: 0.4px; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       REVEAL — invisível apenas quando o JS confirma que pode revelar
+    ═══════════════════════════════════════════════════════════════ */
+    .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.95s var(--ease-out), transform 0.95s var(--ease-out); }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       MOVIMENTO ANCORADO NO SCROLL (CSS puro, sem listener)
+    ═══════════════════════════════════════════════════════════════ */
+    /* Só a paralaxe usa timeline de scroll: são camadas da altura da viewport,
+       exatamente o caso para o qual o intervalo `cover` foi desenhado. Os reveals
+       ficam no IntersectionObserver — `view()` calibra o intervalo pela altura do
+       elemento, e blocos altos permaneceriam invisíveis já dentro da tela. */
+    @supports (animation-timeline: view()) {
+      @media (prefers-reduced-motion: no-preference) {
+        [data-parallax] {
+          animation: parallaxDrift 1s linear both;
+          animation-timeline: view();
+          animation-range: cover 0% cover 100%;
+        }
+        @keyframes parallaxDrift { from { transform: translate3d(0, -5.5%, 0); } to { transform: translate3d(0, 5.5%, 0); } }
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       RESPONSIVO
+    ═══════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .cta-split { grid-template-columns: 1fr; }
+      .cta-media { min-height: 70vw; }
+    }
+    @media (max-width: 900px) {
+      .fsplit, .ssplit { grid-template-columns: 1fr; }
+      .fsplit.reverse .fsplit-media, .ssplit.reverse .ssplit-media { order: 0; }
+      .fsplit-media { min-height: 76vw; }
+      .ssplit-media { position: relative; height: 92vw; min-height: 400px; }
+      .acordo-head { grid-template-columns: 1fr; align-items: start; }
+    }
+    @media (max-width: 768px) {
+      :root { --header-h: 76px; }
+      .hero-scroll-hint { display: none; }
+      .audience-cols { grid-template-columns: 1fr; }
+      .audience-col, .audience-col.dark { padding: 56px var(--edge) 64px; }
+      .origin-layout { grid-template-columns: 1fr; }
+      .origin-media { min-height: 88vw; }
+      .manifesto { height: auto; min-height: 0; padding: var(--section-y) 0; }
+      .manifesto-media { inset: 0; height: 100%; }
+      .leitura-grid { grid-template-columns: 1fr; }
+      .terms { grid-template-columns: 1fr; }
+      .process-step { grid-template-columns: 1fr; gap: 6px; }
+      .step-num { font-size: 32px; }
+      figcaption { left: 20px; bottom: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important; scroll-behavior: auto !important;
+      }
+      .js .reveal { opacity: 1 !important; transform: none !important; animation: none !important; }
+      [data-parallax] { animation: none !important; transform: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="site-header" id="site-header">
+    <div class="wrap">
+      <div class="header-inner">
+        <a href="#hero" class="logo-wrap" aria-label="knoten.biz — início">
+          <span class="logo-mark" role="img" aria-label="knoten.biz"></span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#processo" class="nav-link">Processo</a>
+          <a href="#acordo" class="nav-link">Acordo</a>
+          <a href="#para-voce" class="nav-link">Para quem</a>
+          <a href="#principios" class="nav-link">Princípios</a>
+          <a href="#origem" class="nav-link">Origem</a>
+          <a href="newsletter/index.html" class="nav-link">Newsletter</a>
+          <a href="cases/index.html" class="nav-link">Cases</a>
+        </nav>
+
+        <div class="nav-right">
+          <a href="mailto:contato@knoten.biz?subject=Solicita%C3%A7%C3%A3o%20de%20acesso%20%E2%80%94%20knoten.biz" class="nav-btn nav-cta">Solicitar acesso</a>
+
+          <a href="https://www.linkedin.com/company/knoten-biz/" target="_blank" rel="noopener" class="nav-btn is-icon" aria-label="LinkedIn da knoten.biz">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/knoten.biz/" target="_blank" rel="noopener" class="nav-btn is-icon" aria-label="Instagram da knoten.biz">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.89 1.44 1.44 0 0 0 0-2.89z"/></svg>
+          </a>
+          <a href="https://wa.me/5511992653106?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20knoten.biz." target="_blank" rel="noopener" class="nav-btn is-icon" aria-label="WhatsApp da knoten.biz">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>
+          </a>
+
+          <button type="button" class="nav-btn is-icon nav-toggle" popovertarget="mobile-nav" aria-expanded="false" aria-label="Abrir menu">
+            <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MENU MÓVEL ═══ -->
+  <div id="mobile-nav" class="mobile-nav" popover aria-label="Menu">
+    <button type="button" class="m-close" popovertarget="mobile-nav" popovertargetaction="hide" aria-label="Fechar menu">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
+    </button>
+    <a href="#processo"  class="m-link">Processo</a>
+    <a href="#acordo"    class="m-link">Acordo</a>
+    <a href="#para-voce" class="m-link">Para quem</a>
+    <a href="#principios" class="m-link">Princípios</a>
+    <a href="#origem"    class="m-link">Origem</a>
+    <a href="newsletter/index.html" class="m-link">Newsletter</a>
+    <a href="cases/index.html"      class="m-link">Cases</a>
+    <div class="m-actions">
+      <a href="mailto:contato@knoten.biz?subject=Solicita%C3%A7%C3%A3o%20de%20acesso%20%E2%80%94%20knoten.biz" class="btn-outline-light">Solicitar acesso</a>
+      <div class="m-social">
+        <a href="https://www.linkedin.com/company/knoten-biz/" target="_blank" rel="noopener" aria-label="LinkedIn da knoten.biz">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zm1.78 13.02H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/knoten.biz/" target="_blank" rel="noopener" aria-label="Instagram da knoten.biz">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.89 1.44 1.44 0 0 0 0-2.89z"/></svg>
+        </a>
+        <a href="https://wa.me/5511992653106?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20knoten.biz." target="_blank" rel="noopener" aria-label="WhatsApp da knoten.biz">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.45 6.6 2.02 12.05 2.02c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.17-3.48-8.42Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-media" data-parallax="0.16">
+      <picture>
+        <source type="image/avif" sizes="100vw" srcset="assets/img/hero-fjord-768.avif 768w, assets/img/hero-fjord-1200.avif 1200w, assets/img/hero-fjord-1600.avif 1600w, assets/img/hero-fjord-2000.avif 2000w">
+        <source type="image/webp" sizes="100vw" srcset="assets/img/hero-fjord-768.webp 768w, assets/img/hero-fjord-1200.webp 1200w, assets/img/hero-fjord-1600.webp 1600w, assets/img/hero-fjord-2000.webp 2000w">
+        <img class="hero-img" src="assets/img/hero-fjord-1600.jpg" width="2200" height="1466" alt="Duas modelos em tricô canelado de malharia retilínea diante de um fjord" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
+    <div class="hero-gradient"></div>
+    <div class="hero-content">
+      <div class="wrap">
+        <p class="hero-eyebrow">Malharia retilínea de alto padrão</p>
+        <h1 id="hero-title">Malharia retilínea<br>para quem <em>leva<br>a sério.</em></h1>
+        <p class="hero-sub">Conectamos marcas de pequena tiragem com fornecedores auditados. Contratos claros, acompanhamento real e qualidade que não abre mão.</p>
+        <div class="hero-actions">
+          <a href="#processo" class="btn-ghost-light">Como funciona</a>
+          <a href="mailto:contato@knoten.biz?subject=Solicita%C3%A7%C3%A3o%20de%20acesso%20%E2%80%94%20knoten.biz" class="btn-text-light">Solicitar acesso
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true"><span class="scroll-label">Scroll</span><div class="scroll-line"></div></div>
+    <div id="header-sentinel" style="position:absolute;top:80px;left:0;width:1px;height:1px;" aria-hidden="true"></div>
+  </section>
+
+  <!-- ═══ O PROBLEMA ═══ -->
+  <section class="fsplit reverse" aria-labelledby="problema-title">
+    <figure class="fsplit-media">
+      <picture>
+        <source type="image/avif" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/alfaiataria-linho-560.avif 560w, assets/img/alfaiataria-linho-900.avif 900w, assets/img/alfaiataria-linho-1280.avif 1280w, assets/img/alfaiataria-linho-1800.avif 1800w">
+        <source type="image/webp" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/alfaiataria-linho-560.webp 560w, assets/img/alfaiataria-linho-900.webp 900w, assets/img/alfaiataria-linho-1280.webp 1280w, assets/img/alfaiataria-linho-1800.webp 1800w">
+        <img src="assets/img/alfaiataria-linho-1280.jpg" width="2200" height="1466" alt="Modelo em alfaiataria de linho sob luz natural" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Alfaiataria · linho</figcaption>
+    </figure>
+    <div class="fsplit-body">
+      <p class="eyebrow reveal">O problema que resolvemos</p>
+      <p class="statement-text reveal reveal-d1" id="problema-title">Marcas sérias não encontram fornecedores que falem a mesma língua. Fornecedores bons não chegam até marcas que valem a pena. <em>A knoten.biz resolve isso.</em></p>
+      <p class="fsplit-lead reveal reveal-d2">Uma intermediação racional entre quem exige padrão e quem sabe entregá-lo — sem o atrito das negociações diretas nem a margem abusiva das distribuidoras genéricas.</p>
+    </div>
+  </section>
+
+  <!-- ═══ PROCESSO ═══ -->
+  <section class="ssplit" id="processo" aria-labelledby="processo-title">
+    <figure class="ssplit-media">
+      <picture>
+        <source type="image/avif" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/fiacao-560.avif 560w, assets/img/fiacao-900.avif 900w, assets/img/fiacao-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/fiacao-560.webp 560w, assets/img/fiacao-900.webp 900w, assets/img/fiacao-1280.webp 1280w">
+        <img src="assets/img/fiacao-1280.jpg" width="1464" height="2200" alt="Modelo caminhando por uma fiação têxtil entre fileiras de fios" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Fiação · fio de origem</figcaption>
+    </figure>
+    <div class="ssplit-body">
+      <p class="eyebrow reveal">Método</p>
+      <h2 class="section-title reveal" id="processo-title">Como funciona</h2>
+      <p class="ssplit-lead reveal reveal-d1">Três etapas entre a primeira mensagem e a peça entregue.</p>
+
+      <div class="process-step reveal">
+        <p class="step-num" aria-hidden="true">01</p>
+        <div>
+          <h3 class="step-heading">Seleção</h3>
+          <p class="step-body">Fornecedor auditado por rigor técnico, capacidade em série pequena e padrão de acabamento. Marca verificada quanto a seriedade e viabilidade comercial.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <p class="step-num" aria-hidden="true">02</p>
+        <div>
+          <h3 class="step-heading">Intermediação</h3>
+          <p class="step-body">Cada relação nasce com contrato e acordo de nível de serviço. Expectativa escrita no lugar de expectativa presumida.</p>
+        </div>
+      </div>
+      <div class="process-step reveal">
+        <p class="step-num" aria-hidden="true">03</p>
+        <div>
+          <h3 class="step-heading">Suporte contínuo</h3>
+          <p class="step-body">Acompanhamos a produção e cobramos os dois lados. Quando um problema surge, intervimos — não apenas registramos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ACORDO ═══ -->
+  <section class="acordo" id="acordo" aria-labelledby="acordo-title">
+    <div class="wrap">
+      <div class="acordo-head">
+        <div>
+          <p class="eyebrow reveal">Termos</p>
+          <h2 class="section-title reveal" id="acordo-title">O que está no acordo</h2>
+        </div>
+        <p class="acordo-lead reveal reveal-d1">O que dá para conferir antes de qualquer conversa são os termos: o que está dentro do escopo, o que fica de fora e como a intermediação se paga.</p>
+      </div>
+    </div>
+
+    <figure class="acordo-plate reveal">
+      <picture>
+        <source type="image/avif" sizes="100vw" srcset="assets/img/acordo-trio-560.avif 560w, assets/img/acordo-trio-900.avif 900w, assets/img/acordo-trio-1280.avif 1280w, assets/img/acordo-trio-1672.avif 1672w">
+        <source type="image/webp" sizes="100vw" srcset="assets/img/acordo-trio-560.webp 560w, assets/img/acordo-trio-900.webp 900w, assets/img/acordo-trio-1280.webp 1280w, assets/img/acordo-trio-1672.webp 1672w">
+        <img src="assets/img/acordo-trio-1280.jpg" width="1672" height="941" alt="Três modelos em malha e alfaiataria marinho, sentados e apoiados em um banco de reboco sob luz natural" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Malha e alfaiataria · paleta marinho</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <dl class="terms">
+        <div class="term reveal">
+          <dt>Escopo</dt>
+          <dd>Malharia retilínea, pequena tiragem, fornecedores no Brasil. Fora disso a knoten.biz não intermedia.</dd>
+        </div>
+        <div class="term reveal">
+          <dt>O que a knoten.biz faz</dt>
+          <dd>Seleciona o fornecedor, estrutura o contrato e o acordo de nível de serviço, acompanha a produção e intervém quando um prazo ou um padrão deixa de ser cumprido.</dd>
+        </div>
+        <div class="term reveal">
+          <dt>O que a knoten.biz não faz</dt>
+          <dd>Não fabrica, não mantém estoque próprio e não assume a operação de nenhum dos dois lados. A produção é do fornecedor; a decisão de compra é da marca.</dd>
+        </div>
+        <div class="term reveal">
+          <dt>O que o contrato define</dt>
+          <dd>Prazo, padrão de qualidade, volume por referência, responsabilidade de cada parte e o que acontece quando algo falha. Marca e fornecedor assinam; a knoten.biz responde pelo acompanhamento.</dd>
+        </div>
+        <div class="term reveal">
+          <dt>Remuneração</dt>
+          <dd>A intermediação é remunerada, e o valor é combinado antes de a produção começar. O modelo só se sustenta se os três lados ganham: se a knoten.biz precisasse espremer a marca ou o fornecedor para existir, não deveria existir.</dd>
+        </div>
+      </dl>
+
+      <p class="acordo-note reveal">Número — mínimo por referência, prazo, capacidade — depende da peça e da malharia. Ele entra na primeira resposta, com nome de fornecedor e data, e não numa tabela genérica aqui.</p>
+    </div>
+  </section>
+
+  <!-- ═══ PARA QUEM ═══ -->
+  <section class="audience" id="para-voce" aria-labelledby="para-voce-title">
+    <div class="audience-hero">
+      <div class="audience-hero-media" data-parallax="0.1">
+        <picture>
+          <source type="image/avif" sizes="100vw" srcset="assets/img/knit-dolomitas-768.avif 768w, assets/img/knit-dolomitas-1200.avif 1200w, assets/img/knit-dolomitas-1600.avif 1600w">
+          <source type="image/webp" sizes="100vw" srcset="assets/img/knit-dolomitas-768.webp 768w, assets/img/knit-dolomitas-1200.webp 1200w, assets/img/knit-dolomitas-1600.webp 1600w">
+          <img src="assets/img/knit-dolomitas-1600.jpg" width="1672" height="941" alt="Modelo em vestido de tricô de trama aberta sentada em campo alpino, com as Dolomitas ao fundo" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="audience-hero-overlay"></div>
+      <div class="wrap audience-hero-content">
+        <p class="eyebrow light reveal">Dois lados</p>
+        <h2 class="section-title reveal reveal-d1" id="para-voce-title">Para quem é</h2>
+        <p class="audience-hero-lead reveal reveal-d2">A rede tem duas portas de entrada e critérios distintos para cada uma. Encontre a sua.</p>
+      </div>
+    </div>
+
+    <div class="audience-cols">
+        <div class="audience-col reveal">
+          <p class="col-tag">Marcas de pequena tiragem</p>
+          <h3 class="col-heading">Fornecedores que entendem seu padrão.</h3>
+          <div class="audience-block">
+            <p class="block-title">Onde você está hoje</p>
+            <div class="block-quote"><p class="block-text">A distribuidora grande não olha para pequena tiragem. E a negociação direta com a malharia corre sem contrato, sem prazo firme e sem a quem recorrer quando atrasa.</p></div>
+          </div>
+          <div class="audience-block">
+            <p class="block-title">O que você recebe</p>
+            <p class="block-text">Fornecedor auditado, acordo de nível de serviço que define prazo e padrão de qualidade, comunicação estruturada e alguém acompanhando a produção do outro lado da linha.</p>
+          </div>
+          <div class="audience-block">
+            <p class="block-title">Como entra</p>
+            <div class="highlight-box"><p>Você descreve volume, prazo e especificação. Selecionamos 1–2 malharias que atendem exatamente aquilo. Contrato e SLA assinados pelas duas partes. A partir daí, acompanhamos — e intervimos quando precisa.</p></div>
+          </div>
+          <div class="col-cta">
+            <a class="btn-outline-dark" href="mailto:contato@knoten.biz?subject=Marca%20%E2%80%94%20solicita%C3%A7%C3%A3o%20de%20acesso&body=Marca%3A%0D%0ASite%20ou%20Instagram%3A%0D%0APe%C3%A7as%20e%20composi%C3%A7%C3%A3o%3A%0D%0AVolume%20por%20refer%C3%AAncia%3A%0D%0APrazo%20desejado%3A%0D%0ACidade%2FUF%3A%0D%0A%0D%0A">Sou marca
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="audience-col dark reveal reveal-d1">
+          <p class="col-tag">Fornecedores qualificados</p>
+          <h3 class="col-heading">Marcas que compram pelo que você faz.</h3>
+          <div class="audience-block">
+            <p class="block-title">Onde você está hoje</p>
+            <div class="block-quote"><p class="block-text">Você tem máquina e técnica, mas não tem canal até a marca que pagaria por isso. O canal que existe cobra caro e entrega volume que não dá para planejar.</p></div>
+          </div>
+          <div class="audience-block">
+            <p class="block-title">O que você recebe</p>
+            <p class="block-text">Clientes que escolhem por padrão e não por preço, prazo negociado dentro do que a sua operação aguenta e relação que se repete na coleção seguinte em vez de morrer no pedido.</p>
+          </div>
+          <div class="audience-block">
+            <p class="block-title">Como entra</p>
+            <div class="highlight-box"><p>Você passa por seleção: auditamos infraestrutura, técnica, capacidade e a forma de trabalhar. Aprovado, entra na rede com o mesmo SLA padrão que define o que cada lado deve — inclusive a knoten.biz.</p></div>
+          </div>
+          <div class="col-cta">
+            <a class="btn-outline-light" href="mailto:contato@knoten.biz?subject=Fornecedor%20%E2%80%94%20candidatura%20%C3%A0%20sele%C3%A7%C3%A3o&body=Malharia%3A%0D%0ACidade%2FUF%3A%0D%0AM%C3%A1quinas%20(marca%20e%20galga)%3A%0D%0ACapacidade%20mensal%3A%0D%0AM%C3%ADnimo%20por%20refer%C3%AAncia%3A%0D%0AClientes%20de%20refer%C3%AAncia%3A%0D%0A%0D%0A">Sou fornecedor
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+            </a>
+          </div>
+        </div>
+    </div>
+
+    <!-- fechamento fotográfico da seção -->
+    <div class="editorial-spread">
+      <div class="editorial-media" data-parallax="0.12">
+        <picture>
+          <source type="image/avif" sizes="100vw" srcset="assets/img/audiencia-mar-768.avif 768w, assets/img/audiencia-mar-1200.avif 1200w, assets/img/audiencia-mar-1600.avif 1600w, assets/img/audiencia-mar-2000.avif 2000w">
+          <source type="image/webp" sizes="100vw" srcset="assets/img/audiencia-mar-768.webp 768w, assets/img/audiencia-mar-1200.webp 1200w, assets/img/audiencia-mar-1600.webp 1600w, assets/img/audiencia-mar-2000.webp 2000w">
+          <img src="assets/img/audiencia-mar-1600.jpg" width="2200" height="1464" alt="Casal em peças de tricô de trama aberta à beira-mar" loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="editorial-overlay"></div>
+      <div class="editorial-caption">
+        <p class="editorial-caption-text reveal">Qualidade que não se negocia.</p>
+        <p class="editorial-caption-sub reveal reveal-d1">Malharia retilínea · seleção rigorosa</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PRINCÍPIOS ═══ -->
+  <section class="ssplit reverse" id="principios" aria-labelledby="principios-title">
+    <figure class="ssplit-media">
+      <picture>
+        <source type="image/avif" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/principios-560.avif 560w, assets/img/principios-900.avif 900w, assets/img/principios-1280.avif 1280w">
+        <source type="image/webp" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/principios-560.webp 560w, assets/img/principios-900.webp 900w, assets/img/principios-1280.webp 1280w">
+        <img src="assets/img/principios-1280.jpg" width="1672" height="941" alt="Marcas e fornecedores em harmonia" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Os três lados · marca, fornecedor, intermediador</figcaption>
+    </figure>
+    <div class="ssplit-body">
+      <p class="eyebrow reveal">Inegociáveis</p>
+      <h2 class="section-title reveal" id="principios-title">Princípios</h2>
+      <p class="ssplit-lead reveal reveal-d1">Quatro princípios determinam quem entra na rede, como as relações são estruturadas e o que acontece quando algo falha.</p>
+
+      <div class="principle reveal">
+        <p class="principle-num" aria-hidden="true">I</p>
+        <h3>Selecionismo rigoroso</h3>
+        <p>Qualidade acima de quantidade. Cada fornecedor é auditado. Cada marca é verificada. Não trabalhamos com quem não cumpre o que assina.</p>
+      </div>
+      <div class="principle reveal">
+        <p class="principle-num" aria-hidden="true">II</p>
+        <h3>Transparência contratual</h3>
+        <p>Todas as partes sabem exatamente o que esperar. Contratos são claros. Não há surpresas. Responsabilidades documentadas e prestação de contas regular.</p>
+      </div>
+      <div class="principle reveal">
+        <p class="principle-num" aria-hidden="true">III</p>
+        <h3>Localismo responsável</h3>
+        <p>Brasil primeiro. Apoiamos fornecedores que praticam sustentabilidade e boas práticas trabalhistas. Relacionamentos de longo prazo, não transação única.</p>
+      </div>
+      <div class="principle reveal">
+        <p class="principle-num" aria-hidden="true">IV</p>
+        <h3>Viabilidade econômica</h3>
+        <p>O modelo só funciona se os três lados ganham: marca, fornecedor, Knoten. Nenhuma das partes explora a outra. Sem isso, o sistema colapsa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ORIGEM ═══ -->
+  <section class="origin" id="origem" aria-labelledby="origem-title">
+    <div class="origin-layout">
+      <figure class="origin-media">
+        <picture>
+          <source type="image/avif" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/origem-fiar-560.avif 560w, assets/img/origem-fiar-900.avif 900w, assets/img/origem-fiar-1280.avif 1280w">
+          <source type="image/webp" sizes="(max-width: 900px) 100vw, 50vw" srcset="assets/img/origem-fiar-560.webp 560w, assets/img/origem-fiar-900.webp 900w, assets/img/origem-fiar-1280.webp 1280w">
+          <img src="assets/img/origem-fiar-1280.jpg" width="1760" height="2200" alt="Artesãs fiando lã em roca, cestos de fios ao redor" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Artesanato têxtil · tradição e técnica</figcaption>
+      </figure>
+      <div class="origin-body">
+        <p class="eyebrow reveal">De onde viemos</p>
+        <h2 class="section-title origin-title reveal reveal-d1" id="origem-title">A origem da knoten.biz</h2>
+        <div class="origin-text reveal reveal-d2">
+          <p>Jacutinga/MG é uma cidade com raízes fundas no têxtil. O <a href="https://linktr.ee/caio.prado" target="_blank" rel="noopener">fundador</a> da knoten.biz é de lá e viu de perto malharias que dominam técnicas que marcas premium procuram — e que nunca chegam até essas marcas. Entre um lado e outro, ou existe um intermediário que vive da diferença, ou não existe <strong>ponte nenhuma</strong>.</p>
+          <p>A knoten.biz existe porque essa ponte precisa ser racional. <strong>Intermediação transparente e viável</strong> para os três lados: marca, fornecedor e intermediador. Sem exploração. Sem promessa que não se cumpre. Sem a ilusão de que negócio pequeno não merece profissionalismo. Ele merece, e dá para estruturar isso de forma que todos ganhem.</p>
+          <p>Porque desenvolvimento local de verdade não é caridade. É negócio bem feito.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MANIFESTO ═══ -->
+  <section class="manifesto" aria-label="Manifesto">
+    <div class="manifesto-media" data-parallax="0.12">
+      <picture>
+        <source type="image/avif" sizes="100vw" srcset="assets/img/manifesto-toscana-768.avif 768w, assets/img/manifesto-toscana-1200.avif 1200w, assets/img/manifesto-toscana-1600.avif 1600w, assets/img/manifesto-toscana-2000.avif 2000w">
+        <source type="image/webp" sizes="100vw" srcset="assets/img/manifesto-toscana-768.webp 768w, assets/img/manifesto-toscana-1200.webp 1200w, assets/img/manifesto-toscana-1600.webp 1600w, assets/img/manifesto-toscana-2000.webp 2000w">
+        <img src="assets/img/manifesto-toscana-1600.jpg" width="2200" height="1464" alt="Modelo ao entardecer em paisagem toscana" loading="lazy" decoding="async">
+      </picture>
+    </div>
+    <div class="manifesto-overlay"></div>
+    <div class="wrap manifesto-content">
+      <p class="eyebrow light reveal">O que buscamos</p>
+      <p class="manifesto-text reveal reveal-d1">Peças feitas para durar mais que uma estação — <em>marcas que constroem valor no tempo, não coleções descartáveis.</em></p>
+      <p class="manifesto-sub reveal reveal-d2">Rigor estético e responsabilidade não são luxo. São a base do negócio.</p>
+    </div>
+  </section>
+
+  <!-- ═══ LEITURA ═══ -->
+  <section class="leitura" id="leitura" aria-labelledby="leitura-title">
+    <div class="wrap">
+      <p class="eyebrow reveal">Leitura</p>
+      <h2 class="section-title reveal reveal-d1" id="leitura-title">O que publicamos</h2>
+
+      <div class="leitura-grid">
+        <a class="leitura-card reveal reveal-d1" href="newsletter/index.html">
+          <p class="k-num">Toda segunda-feira</p>
+          <h3>Newsletter</h3>
+          <p>A carta semanal sobre a cadeia têxtil brasileira: o dado da semana, o que ele revela e o que uma marca ou um fornecedor faz com ele. Escrita por Marina Rocha.</p>
+          <span class="k-ir">Ler as edições</span>
+        </a>
+        <a class="leitura-card reveal reveal-d2" href="cases/index.html">
+          <p class="k-num">Quando o ciclo fecha</p>
+          <h3>Cases</h3>
+          <p>Intermediações reais, descritas do começo ao fim: o que a marca precisava, a restrição do fornecedor, o que foi combinado e o que saiu. Sem número inventado.</p>
+          <span class="k-ir">Ver os casos</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-split" id="contato" aria-labelledby="cta-title">
+    <figure class="cta-media">
+      <picture>
+        <source type="image/avif" sizes="(max-width: 1024px) 100vw, 50vw" srcset="assets/img/alfaiataria-creme-560.avif 560w, assets/img/alfaiataria-creme-900.avif 900w, assets/img/alfaiataria-creme-1280.avif 1280w, assets/img/alfaiataria-creme-1800.avif 1800w">
+        <source type="image/webp" sizes="(max-width: 1024px) 100vw, 50vw" srcset="assets/img/alfaiataria-creme-560.webp 560w, assets/img/alfaiataria-creme-900.webp 900w, assets/img/alfaiataria-creme-1280.webp 1280w, assets/img/alfaiataria-creme-1800.webp 1800w">
+        <img src="assets/img/alfaiataria-creme-1280.jpg" width="2200" height="1467" alt="Modelo em alfaiataria creme em terraço ao entardecer" loading="lazy" decoding="async">
+      </picture>
+      <figcaption>Alto padrão · tons cru</figcaption>
+    </figure>
+    <div class="cta-panel">
+      <h2 class="cta-headline reveal" id="cta-title">Faz sentido<br>pra você? <em>Vamos<br>conversar.</em></h2>
+      <p class="cta-sub reveal reveal-d1">Diga de que lado você está. O e-mail já vai com as perguntas que precisamos responder de qualquer forma — responda o que souber e seguimos daí.</p>
+      <div class="cta-actions reveal reveal-d2">
+        <div class="cta-choice">
+          <a class="btn-primary-light" href="mailto:contato@knoten.biz?subject=Marca%20%E2%80%94%20solicita%C3%A7%C3%A3o%20de%20acesso&body=Marca%3A%0D%0ASite%20ou%20Instagram%3A%0D%0APe%C3%A7as%20e%20composi%C3%A7%C3%A3o%3A%0D%0AVolume%20por%20refer%C3%AAncia%3A%0D%0APrazo%20desejado%3A%0D%0ACidade%2FUF%3A%0D%0A%0D%0A">Sou marca</a>
+          <a class="btn-outline-light" href="mailto:contato@knoten.biz?subject=Fornecedor%20%E2%80%94%20candidatura%20%C3%A0%20sele%C3%A7%C3%A3o&body=Malharia%3A%0D%0ACidade%2FUF%3A%0D%0AM%C3%A1quinas%20(marca%20e%20galga)%3A%0D%0ACapacidade%20mensal%3A%0D%0AM%C3%ADnimo%20por%20refer%C3%AAncia%3A%0D%0AClientes%20de%20refer%C3%AAncia%3A%0D%0A%0D%0A">Sou fornecedor</a>
+        </div>
+        <div class="cta-links">
+          <a href="https://www.linkedin.com/company/knoten-biz/" target="_blank" rel="noopener" class="cta-link">LinkedIn <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+          <a href="https://www.instagram.com/knoten.biz/" target="_blank" rel="noopener" class="cta-link">Instagram <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+          <a href="https://wa.me/5511992653106?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20knoten.biz." target="_blank" rel="noopener" class="cta-link">WhatsApp <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10L10 2M4 2h6v6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span class="footer-logo" role="img" aria-label="knoten.biz"></span>
+        <div class="footer-meta">
+          <a href="https://linktr.ee/caio.prado" target="_blank" rel="noopener" class="footer-founder">Fundador</a>
+          <p class="footer-copy">© 2026 knoten.biz Empreendimentos e Participações Ltda. · Jacutinga/MG</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "knoten.biz",
+    "legalName": "knoten.biz Empreendimentos e Participações Ltda.",
+    "url": "https://knoten.biz/",
+    "logo": "https://knoten.biz/assets/img/icon-512.png",
+    "image": "https://knoten.biz/assets/img/og-knoten.jpg",
+    "description": "Intermediação racional entre marcas premium de pequena tiragem e fornecedores auditados de malharia retilínea no Brasil.",
+    "email": "contato@knoten.biz",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jacutinga",
+      "addressRegion": "MG",
+      "addressCountry": "BR"
+    },
+    "areaServed": { "@type": "Country", "name": "Brasil" },
+    "knowsAbout": ["Malharia retilínea", "Tricô industrial", "Cadeia têxtil", "Sourcing de vestuário"],
+    "sameAs": [
+      "https://www.linkedin.com/company/knoten-biz/",
+      "https://www.instagram.com/knoten.biz/"
+    ]
+  }
+  </script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var header = document.getElementById('site-header');
+      var sentinel = document.getElementById('header-sentinel');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasScrollTimeline = CSS.supports && CSS.supports('animation-timeline', 'view()');
+
+      /* ── Estado do header: um observer, zero trabalho por frame ── */
+      if (sentinel && 'IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+          header.classList.toggle('scrolled', !entries[0].isIntersecting);
+        }, { threshold: 0 }).observe(sentinel);
+      } else {
+        window.addEventListener('scroll', function () {
+          header.classList.toggle('scrolled', window.scrollY > 80);
+        }, { passive: true });
+      }
+
+      /* ── Reveal ── */
+      var targets = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
+        targets.forEach(function (el) { io.observe(el); });
+      } else {
+        targets.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      /* ── Paralaxe: idem, apenas como reserva ── */
+      if (!hasScrollTimeline && !reduceMotion) {
+        var layers = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+        var pending = false;
+        var draw = function () {
+          var vh = window.innerHeight;
+          layers.forEach(function (el) {
+            var r = el.getBoundingClientRect();
+            if (r.bottom < 0 || r.top > vh) return;
+            var speed = parseFloat(el.dataset.parallax) || 0.12;
+            var offset = (r.top + r.height / 2 - vh / 2) * -speed;
+            el.style.transform = 'translate3d(0,' + offset.toFixed(1) + 'px,0)';
+          });
+          pending = false;
+        };
+        var schedule = function () { if (!pending) { pending = true; requestAnimationFrame(draw); } };
+        window.addEventListener('scroll', schedule, { passive: true });
+        window.addEventListener('resize', schedule);
+        draw();
+      }
+
+      /* ── Seção corrente no menu ── */
+      if ('IntersectionObserver' in window) {
+        var byId = {};
+        document.querySelectorAll('.nav-link[href^="#"], .m-link[href^="#"]').forEach(function (a) {
+          var id = a.getAttribute('href').slice(1);
+          (byId[id] = byId[id] || []).push(a);
+        });
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var set = byId[e.target.id];
+            if (set) set.forEach(function (a) { a.classList.toggle('is-current', e.isIntersecting); });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        Object.keys(byId).forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) spy.observe(el);
+        });
+      }
+
+      /* ── Menu móvel ── */
+      var nav = document.getElementById('mobile-nav');
+      var toggle = document.querySelector('.nav-toggle');
+      var supportsPopover = typeof HTMLElement !== 'undefined' && HTMLElement.prototype.hasOwnProperty('popover');
+
+      if (nav && toggle) {
+        if (supportsPopover) {
+          nav.addEventListener('toggle', function (e) {
+            toggle.setAttribute('aria-expanded', e.newState === 'open' ? 'true' : 'false');
+          });
+        } else {
+          /* reserva para navegadores sem a Popover API */
+          var open = function (state) {
+            nav.classList.toggle('is-open', state);
+            toggle.setAttribute('aria-expanded', state ? 'true' : 'false');
+            document.body.style.overflow = state ? 'hidden' : '';
+            if (state) { var first = nav.querySelector('a'); if (first) first.focus(); }
+          };
+          toggle.addEventListener('click', function (e) { e.preventDefault(); open(!nav.classList.contains('is-open')); });
+          nav.querySelector('.m-close').addEventListener('click', function (e) { e.preventDefault(); open(false); toggle.focus(); });
+          document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { open(false); toggle.focus(); } });
+        }
+
+        /* fechar ao navegar para uma âncora */
+        nav.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.addEventListener('click', function () {
+            if (supportsPopover && nav.matches(':popover-open')) { nav.hidePopover(); }
+            else { nav.classList.remove('is-open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); }
+          });
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
