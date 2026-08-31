@@ -1,1 +1,14 @@
-{"edicoes":[]}
+{
+  "edicoes": [
+    {
+      "n": 1,
+      "slug": "2026-08-31-pequena-tiragem-nao-e-um-numero",
+      "data": "2026-08-31",
+      "titulo": "Pequena tiragem não é um número",
+      "subtitulo": "A mesma expressão significa coisas opostas na marca e na malharia, e a diferença costuma aparecer com a peça já na máquina.",
+      "descricao": "O que “pequena tiragem” quer dizer para quem desenha e para quem produz, e as quatro linhas de e-mail que evitam a conversa cara dois meses depois.",
+      "gravado_em": "2026-08-31T07:06:13",
+      "origem_md": "/Users/caioprado/Documents/60 Projetos/Knoten/Marina Rocha/drafts/newsletter_20260831.md"
+    }
+  ]
+}
