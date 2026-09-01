@@ -1,0 +1,15 @@
+# Configuração do Jekyll no GitHub Pages. O site é HTML pronto: o Jekyll aqui
+# não gera nada, só copia. Existem duas razões para o arquivo.
+#
+# 1. `include`: por padrão o Jekyll descarta tudo que começa com ponto, e o
+#    /.well-known/security.txt do RFC 9116 cairia fora do ar por causa disso.
+# 2. `exclude`: os modelos da newsletter hoje ficam de fora por acidente da
+#    convenção do sublinhado. Declarar aqui torna a exclusão uma decisão, e não
+#    um efeito colateral que a próxima versão do Jekyll pode reverter.
+
+include:
+  - .well-known
+
+exclude:
+  - newsletter/_modelo-edicao.html
+  - newsletter/_modelo-indice.html

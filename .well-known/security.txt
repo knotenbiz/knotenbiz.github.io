@@ -1,0 +1,7 @@
+# Canal para relatar falha de segurança no knoten.biz.
+# Formato do RFC 9116. Escreva em português, inglês, italiano ou espanhol.
+
+Contact: mailto:contato@knoten.biz
+Expires: 2027-08-31T23:59:59.000Z
+Preferred-Languages: pt-BR, en, it, es
+Canonical: https://knoten.biz/.well-known/security.txt
